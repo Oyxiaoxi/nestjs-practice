@@ -3,10 +3,14 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { User } from '@app/db/schemas/user.schemas';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
-    DbModule.forRoot('mongodb://localhost:27017/nest'),
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+    DbModule.forRoot('MONGO_URI', {}),
     DbModule.forFeature([User]),
   ],
   controllers: [AppController],
