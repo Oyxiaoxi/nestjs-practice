@@ -18,6 +18,6 @@ export class AppController {
 
   @Get('users')
   async getUsers() {
-    return await this.userModel.findOne();
+    return await this.userModel.find();
   }
 }
